@@ -5,46 +5,42 @@ import java.util.Scanner;
 public class Secondversion {
 
 
-	public static void main(String[] args) {
-		
-		
-		Scanner newscanner = new Scanner(System.in); // creates Scanner
-		boolean check = false; // boolean value for while loop
-		int number, counter = 0; // number will be input, counter keeps track of white loop iterations
-		int rng = (int)(Math.random()*10+1); // generates a random number from 1-10
-		System.out.println(rng); // prints out the number, used for testing
-		
-		while(check==false)
-		{
-			
-		if (counter>2) {
-			System.out.println("You are out of guesses, you Lose!");
-			break; // break exits the while loop
+	 private static Scanner keyboard;
+
+		public static void main(String[] args) {
+	            int secretNumber;
+	            secretNumber = (int) (Math.random() * 10 + 1);           
+	            keyboard = new Scanner(System.in);
+	            int guess;
+	            
+	            int numberOfTries = 0;
+	            boolean win = false; 
+	            
+	            do {
+	            	System.out.print("Enter a guess (1-10): ");
+	                guess = keyboard.nextInt();
+	            	numberOfTries++;
+	            	
+	            	if (guess == secretNumber) {
+	                  	  System.out.println("Your guess is correct. Congratulations!");
+	                      win = true;
+	                }
+	            	else {  
+	            		
+	            		if (numberOfTries > 2) {
+		            		System.out.println("GAME OVER! The correct number is: " + secretNumber);
+		           	}
+	           		else if (guess < secretNumber) {
+	            			System.out.println("Your guess is smaller than the secret number.");
+	                    }
+	                    else {
+	                        System.out.println("Your guess is greater than the secret number.");	
+	                    }
+	            	}
+	            }
+	            while(!win && numberOfTries < 3);
+
+//while (guess != secretNumber); as many times until the user guess the correct number
+//
 		}
-		
-			System.out.println("Please pick a number from 1-10");
-		number=newscanner.nextInt();
-		
-		if(number==rng) // if the input number manages random number you win 
-		{
-			System.out.println("RIGHT! You won the game!");
-			check=true;
-		}
-		
-		else if ((number+1==rng) || (number-1==rng)) // if you are 1 number below or above random number you are hot  
-		{
-			System.out.println("Hot! Try again!");
-		}
-		else if ((number+2==rng) || (number-2==rng)) // if you are 2 number below or above random number you are worm 
-		{
-			System.out.println("Warm! Try again!");
-		}
-		
-		else {
-			System.out.println("Cold!!"); // if you are any of the above you are cold
-		}
-		
-		counter++; // increments the time through the loop 
-		} // closes main
-	}
 }
